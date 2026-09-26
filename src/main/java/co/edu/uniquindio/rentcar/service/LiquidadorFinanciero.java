@@ -10,13 +10,21 @@ public class LiquidadorFinanciero {
 
     //aplica SRP aislando el calculo del costo final de cualquier reserva.
     public static double calcularTotalReserva(Reserva reserva) {
-        if (reserva == null || reserva.getFechaInicio() == null || reserva.getFechaFin() == null) {
+        if (reserva == null) {
             return 0.0;
         }
 
         // 1. Cálculo de días de uso
+                if (reserva.getFechaInicio() == null || reserva.getFechaFin() == null) {
+            throw new IllegalArgumentException("Las fechas de inicio y devolución son obligatorias.");
+                }
+        if (!reserva.getFechaFin().isAfter(reserva.getFechaInicio())) {
+            throw new IllegalArgumentException("La fecha de devolución debe ser posterior a la fecha de inicio.");
+        }
+
+
         long dias = ChronoUnit.DAYS.between(reserva.getFechaInicio(), reserva.getFechaFin());
-        if (dias <= 0) dias = 1;
+        // El rango validado garantiza días de alquiler positivos.
 
         // 2. Liquidación de tarifas base del modelo
         double tarifaVehiculo = (reserva.getVehiculo() != null) ? reserva.getVehiculo().getTarifaDiaria() : 0.0;
@@ -34,6 +42,14 @@ public class LiquidadorFinanciero {
         }
 
         // 4. Aplicación de descuentos corporativos
-        return (costoBase + costoServicios) - reserva.getDescuento();
+        double subtotal = costoBase + costoServicios;
+        double descuento = reserva.getDescuento();
+        if (!Double.isFinite(descuento) || descuento < 0) {
+            throw new IllegalArgumentException("El descuento no puede ser negativo.");
+        }
+        if (descuento > subtotal) {
+            throw new IllegalArgumentException("El descuento no puede superar el subtotal del alquiler.");
+        }
+        return subtotal - descuento;
     }
 }
