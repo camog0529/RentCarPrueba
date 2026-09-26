@@ -26,4 +26,10 @@ class ClienteServiceTest {
         assertFalse(servicio.esNumeroPerfecto(12));
         assertFalse(servicio.esNumeroPerfecto(0));
     }
+
+    @Test
+    void reconoceOtroNumeroPerfectoYRechazaNegativos() {
+        assertTrue(servicio.esNumeroPerfecto(496));
+        assertFalse(servicio.esNumeroPerfecto(-6));
+    }
 }
