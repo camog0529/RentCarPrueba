@@ -42,11 +42,11 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    public void setCorreoElectronico() {
+    public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
     }
 
-    public void setEdad(String correoElectronico) {
+    public void setEdad(int edad) {
         this.edad = edad;
     }
 
