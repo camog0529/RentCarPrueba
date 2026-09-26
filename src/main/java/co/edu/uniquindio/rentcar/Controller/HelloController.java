@@ -180,6 +180,10 @@ public class HelloController {
         try {
             long tel = Long.parseLong(txtTelefonoBusqueda.getText().trim());
             Cliente c = clienteService.buscarClientePorTelefono(tel);
+            if (c == null) {
+                lblResultadoBusqueda.setText("No se encontró un cliente con ese teléfono.");
+                return;
+            }
             boolean perfecto = clienteService.esNumeroPerfecto(tel);
             lblResultadoBusqueda.setText("Cliente: " + c.getNombreCompleto() + (perfecto ? " | Teléfono Perfecto." : " | Teléfono Común."));
         } catch (Exception e) {
