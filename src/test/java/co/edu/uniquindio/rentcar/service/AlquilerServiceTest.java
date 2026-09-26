@@ -18,6 +18,11 @@ class AlquilerServiceTest {
     }
 
     @Test
+    void devuelveNuloCuandoLaPlacaNoExiste() {
+        assertNull(servicio.buscarVehiculoPorPlaca("ZZZ999"));
+    }
+
+    @Test
     void calculaFacturaConDiasServiciosYDescuento() {
         SolicitudAlquilerDTO solicitud = new SolicitudAlquilerDTO(
                 "PRUEBA-ALQ-1", "1094888999", "KMS123",
@@ -30,6 +35,16 @@ class AlquilerServiceTest {
     void rechazaAlquilerSiElClienteNoExiste() {
         SolicitudAlquilerDTO solicitud = new SolicitudAlquilerDTO(
                 "PRUEBA-ALQ-2", "NO-EXISTE", "KMS123",
+                LocalDate.of(2040, 1, 10), LocalDate.of(2040, 1, 11),
+                "ECONOMICA", 0.0, List.of());
+        assertThrows(IllegalArgumentException.class,
+                () -> servicio.generarFacturaAlquiler(solicitud));
+    }
+
+    @Test
+    void rechazaAlquilerSiElVehiculoNoExiste() {
+        SolicitudAlquilerDTO solicitud = new SolicitudAlquilerDTO(
+                "PRUEBA-ALQ-3", "1094888999", "ZZZ999",
                 LocalDate.of(2040, 1, 10), LocalDate.of(2040, 1, 11),
                 "ECONOMICA", 0.0, List.of());
         assertThrows(IllegalArgumentException.class,
