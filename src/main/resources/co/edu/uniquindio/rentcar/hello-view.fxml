@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="650.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com" xmlns:fx="http://javafx.com"
+      fx:controller="co.edu.uniquindio.rentcar.Controller.HelloController">
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+    </padding>
+    <Label text="RentCar Quindío - Sistema de Gestión Operacional" textFill="#1e548c">
+        <font>
+            <Font name="System Bold" size="18.0"/>
+        </font>
+    </Label>
+
+    <TabPane prefHeight="580.0" prefWidth="570.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <!-- PESTAÑA 1: GESTIÓN DE CLIENTES -->
+            <Tab text="Clientes">
+                <content>
+                    <VBox spacing="10.0">
+                        <padding>
+                            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                        </padding>
+                        <Label text="Registrar Nuevo Cliente">
+                            <font>
+                                <Font name="System Bold" size="12.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtNombre" promptText="Nombre Completo"/>
+                        <TextField fx:id="txtDocumento" promptText="Documento de Identidad"/>
+                        <TextField fx:id="txtTelefonoRegistro" promptText="Teléfono Celular"/>
+                        <TextField fx:id="txtCorreo" promptText="Correo Electrónico"/>
+                        <TextField fx:id="txtEdad" promptText="Edad (Mayor de 18 años)"/>
+                        <Button onAction="#onActionRegistrarCliente" text="Guardar Cliente" maxWidth="Infinity"/>
+
+                        <Label text="Módulo de Validación Lógica (Número Perfecto)" style="-fx-padding: 10 0 0 0;">
+                            <font>
+                                <Font name="System Bold" size="12.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtTelefonoBusqueda" promptText="Ingrese teléfono a consultar"/>
+                        <Button onAction="#onActionBuscarCliente" text="Buscar y Verificar Teléfono"
+                                maxWidth="Infinity"/>
+                        <Label fx:id="lblResultadoBusqueda" text="Esperando consulta..." textFill="#1e6baf"
+                               wrapText="true"/>
+                    </VBox>
+                </content>
+            </Tab>
+
+            <!-- PESTAÑA 2: FLOTA DE VEHÍCULOS -->
+            <Tab text="Vehículos y Extras">
+                <content>
+                    <VBox spacing="10.0">
+                        <padding>
+                            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                        </padding>
+                        <Label text="Registrar Auto en la Flota">
+                            <font>
+                                <Font name="System Bold" size="12.0"/>
+                            </font>
+                        </Label>
+                        <HBox spacing="10.0">
+                            <TextField fx:id="txtPlaca" promptText="Placa" HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="txtMarca" promptText="Marca" HBox.hgrow="ALWAYS"/>
+                        </HBox>
+                        <HBox spacing="10.0">
+                            <TextField fx:id="txtModelo" promptText="Línea/Modelo" HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="txtAnio" promptText="Año" HBox.hgrow="ALWAYS"/>
+                        </HBox>
+                        <HBox spacing="10.0">
+                            <TextField fx:id="txtTipoVehiculo" promptText="Tipo (SUV, Sedán)" HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="txtTarifaDiaria" promptText="Tarifa por Día ($)" HBox.hgrow="ALWAYS"/>
+                        </HBox>
+                        <Button onAction="#onActionRegistrarVehiculo" text="Añadir a la Flota" maxWidth="Infinity"/>
+
+                        <Label text="Catálogo de Vehículos Registrados" style="-fx-padding: 10 0 0 0;">
+                            <font>
+                                <Font name="System Bold" size="12.0"/>
+                            </font>
+                        </Label>
+                        <ListView fx:id="lvVehiculos" prefHeight="150.0"/>
+                    </VBox>
+                </content>
+            </Tab>
+
+            <!-- PESTAÑA 3: CONTRATOS DE ALQUILER -->
+            <Tab text="Alquileres">
+                <content>
+                    <VBox spacing="10.0">
+                        <padding>
+                            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                        </padding>
+                        <Label text="Liquidar y Registrar Alquiler Transaccional">
+                            <font>
+                                <Font name="System Bold" size="12.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtCodigoReserva" promptText="Código del Contrato (ej: ALQ-001)"/>
+
+                        <HBox spacing="10.0">
+                            <TextField fx:id="txtDocumentoClienteAlquiler" promptText="Cédula del Cliente"
+                                       HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="txtPlacaVehiculoAlquiler" promptText="Placa del Vehículo"
+                                       HBox.hgrow="ALWAYS"/>
+                        </HBox>
+
+                        <HBox spacing="10.0">
+                            <DatePicker fx:id="dpFechaInicioAlquiler" promptText="Fecha Entrega" HBox.hgrow="ALWAYS"/>
+                            <DatePicker fx:id="dpFechaFinAlquiler" promptText="Fecha Devolución" HBox.hgrow="ALWAYS"/>
+                        </HBox>
+
+                        <HBox spacing="10.0">
+                            <ComboBox fx:id="cbModalidad" promptText="Seleccione Modalidad" HBox.hgrow="ALWAYS"
+                                      maxWidth="Infinity"/>
+                            <TextField fx:id="txtDescuentoAlquiler" promptText="Descuento ($)" HBox.hgrow="ALWAYS"/>
+                        </HBox>
+
+                        <Label text="Servicios Adicionales Disponibles (Use Ctrl para seleccionar varios):"/>
+                        <ListView fx:id="lvServiciosAdicionales" prefHeight="80.0"/>
+
+                        <Button onAction="#onActionRegistrarAlquiler" text="Procesar y Crear Alquiler"
+                                maxWidth="Infinity" style="-fx-background-color: #2b78c4; -fx-text-fill: white;"/>
+                        <Label fx:id="lblResultadoAlquiler" text="Esperando transacción..." textFill="#17518c"
+                               wrapText="true"/>
+                    </VBox>
+                </content>
+            </Tab>
+
+            <!-- PESTAÑA 4: LIBRO CONTABLE -->
+            <Tab text="Finanzas">
+                <content>
+                    <VBox spacing="15.0">
+                        <padding>
+                            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+                        </padding>
+                        <Label text="Módulo Contable Gerencial (Ingresos Consolidados)">
+                            <font>
+                                <Font name="System Bold" size="12.0"/>
+                            </font>
+                        </Label>
+                        <DatePicker fx:id="dpFechaInicio" promptText="Fecha Inicial del Periodo"/>
+                        <DatePicker fx:id="dpFechaFin" promptText="Fecha Final del Periodo"/>
+                        <Button onAction="#onActionConsultarIngresos" text="Calcular Caja del Periodo"
+                                maxWidth="Infinity"/>
+                        <Label fx:id="lblResultadoIngresos" text="Ingresos Liquidados: $0.00 COP" textFill="#137c22"
+                               wrapText="true">
+                            <font>
+                                <Font name="System Bold" size="13.0"/>
+                            </font>
+                        </Label>
+                    </VBox>
+                </content>
+            </Tab>
+        </tabs>
+    </TabPane>
+</VBox>
