@@ -29,6 +29,18 @@ public class AlquilerService {
      * @return El valor total (double) de la factura generada.
      */
     public double generarFacturaAlquiler(SolicitudAlquilerDTO dto) {
+                if (dto == null) {
+            throw new IllegalArgumentException("La solicitud de alquiler es obligatoria.");
+                }
+        if (dto.getFechaInicio() == null || dto.getFechaFin() == null) {
+            throw new IllegalArgumentException("Las fechas de inicio y devolución son obligatorias.");
+        }
+        if (!dto.getFechaFin().isAfter(dto.getFechaInicio())) {
+            throw new IllegalArgumentException("La fecha de devolución debe ser posterior a la fecha de inicio.");
+        }
+        if (!Double.isFinite(dto.getDescuento()) || dto.getDescuento() < 0) {
+            throw new IllegalArgumentException("El descuento no puede ser negativo.");
+        }
         // 1. Cruzar la información buscando en las listas del repositorio
         Cliente clienteSeleccionado = buscarClientePorCedula(dto.getCedulaCliente());
         Vehiculo vehiculoSeleccionado = buscarVehiculoPorPlaca(dto.getPlacaVehiculo());
@@ -67,11 +79,16 @@ public class AlquilerService {
             contratoFinal.getServiciosSeleccionados().add(catalogo.get(idx));
         }
 
-        // 4. Guardar los datos consolidados en las listas del repositorio
+        // 4. Calcular y validar la factura antes de guardar la reserva.
+                double totalFactura = LiquidadorFinanciero.calcularTotalReserva(contratoFinal);
+        if (totalFactura < 0) {
+            throw new IllegalArgumentException("El descuento no puede superar el subtotal del alquiler.");
+        }
+
         rentCarRepository.guardarReserva(contratoFinal);
 
         // 5. Retornar la liquidación financiera delegando en el Liquidador modular
-        return LiquidadorFinanciero.calcularTotalReserva(contratoFinal);
+        return totalFactura;
     }
 
     public List<Vehiculo> obtenerVehiculosDisponibles() {
