@@ -1,39 +1,51 @@
 # RentCar
 
-RentCar es una aplicación de escritorio hecha con JavaFX para registrar clientes y vehículos, crear alquileres y consultar los ingresos de un periodo.
+RentCar es una aplicación de escritorio desarrollada en Java con JavaFX para apoyar la gestión de una empresa de alquiler de vehículos. Permite registrar clientes y vehículos, crear contratos de alquiler y consultar los ingresos liquidados en un periodo.
 
-Los datos se guardan en memoria mientras la aplicación está abierta. Al cerrarla, los registros se pierden.
+> **Importante:** la información se conserva en memoria mientras la aplicación está abierta. Al cerrarla, los clientes, vehículos y alquileres registrados durante esa sesión se pierden.
+
+## Funcionalidades
+
+- **Clientes:** registrar clientes con nombre, documento, teléfono, correo y edad; buscar clientes por teléfono.
+- **Vehículos:** agregar vehículos a la flota con placa, marca, modelo, año, tipo y tarifa diaria, y consultar el catálogo registrado.
+- **Alquileres:** crear un alquiler indicando el cliente, el vehículo, las fechas de entrega y devolución, la modalidad y el descuento. También se pueden incluir servicios adicionales.
+- **Finanzas:** consultar los ingresos liquidados entre dos fechas.
+- **Validaciones:** el sistema comprueba los datos necesarios para evitar registros incompletos o alquileres con fechas y valores inválidos.
 
 ## Requisitos
 
 - JDK 26.
 - IntelliJ IDEA (opcional).
 
-El proyecto incluye Maven Wrapper, así que no necesitas instalar Maven por separado.
+El proyecto incluye Maven Wrapper, por lo que no es necesario instalar Maven por separado.
 
-## Abrir la aplicación en Windows
+## Ejecutar en Windows
 
-Abre la carpeta del proyecto en IntelliJ IDEA y carga el proyecto Maven. También puedes iniciarla desde la carpeta del proyecto con:
+1. Clona o descarga el repositorio y abre la carpeta del proyecto.
+2. Si usas IntelliJ IDEA, carga el proyecto como un proyecto Maven y configura el JDK 26.
+3. En una terminal abierta en la carpeta del proyecto, ejecuta:
 
-```powershell
-.\mvnw.cmd javafx:run
-```
+   ```powershell
+   .\mvnw.cmd javafx:run
+   ```
+
+Al abrirse la ventana de RentCar, utiliza las pestañas **Clientes**, **Vehículos y Extras**, **Alquileres** y **Finanzas** para acceder a cada módulo.
 
 ## Ejecutar las pruebas
 
-Las pruebas unitarias están en `src/test/java`. Comprueban la creación de clientes, la búsqueda por teléfono, la búsqueda de vehículos, los cálculos de alquileres y descuentos, y la consulta de ingresos.
-
-Para ejecutarlas en Windows:
+Las pruebas unitarias están en `src/test/java`. Para ejecutarlas en Windows, usa:
 
 ```powershell
 .\mvnw.cmd test
 ```
 
-## Organización del código
+Las pruebas cubren la creación y búsqueda de clientes, la gestión de vehículos, el registro y liquidación de alquileres, los descuentos y el cálculo de ingresos.
 
-- `model`: clases que representan clientes, vehículos, alquileres y otros datos del negocio.
-- `repository`: acceso a los datos, que por ahora se conservan en memoria.
-- `service`: operaciones y reglas del negocio.
-- `Controller`: conecta la interfaz JavaFX con los servicios.
-- `src/main/resources`: archivos de la interfaz, como la vista FXML.
+## Organización del proyecto
+
+- `src/main/java/.../model`: entidades y objetos del dominio, como clientes, vehículos y reservas.
+- `src/main/java/.../repository`: acceso y almacenamiento actual de los datos en memoria.
+- `src/main/java/.../service`: operaciones y reglas del negocio.
+- `src/main/java/.../Controller`: conexión entre la interfaz y los servicios.
+- `src/main/resources`: interfaz JavaFX definida con FXML.
 - `src/test/java`: pruebas unitarias.
