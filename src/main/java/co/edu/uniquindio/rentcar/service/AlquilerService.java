@@ -46,9 +46,14 @@ public class AlquilerService {
             modalidad = new ModalidadEconomica(dto.getCodigoReserva(), "Económica", "Plan base", 1, 45000.0, EstadoModalidad.DISPONIBLE);
         } else if (tipo.equals("EJECUTIVA")) {
             modalidad = new ModalidadEjecutiva(dto.getCodigoReserva(), "Ejecutiva", "Plan intermedio", 1, 75000.0, EstadoModalidad.DISPONIBLE, "Sede Central");
-        } else {
+        } else if (tipo.equals("PREMIUM"))
             modalidad = new ModalidadPremium(dto.getCodigoReserva(), "Premium", "Plan alta gama", 1, 120000.0, EstadoModalidad.DISPONIBLE, "Cobertura Total", 2, "VIP");
+        else {
+            throw new IllegalArgumentException("Selecciona una modalidad valida: Economica, Ejecutiva o Premium");
+
+
         }
+
 
         // 3. Creación limpia de la Reserva usando su Constructor tradicional (Garantizando el Slim Controller y SRP)
         Reserva contratoFinal = new Reserva();
