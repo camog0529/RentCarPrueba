@@ -1,40 +1,39 @@
 # RentCar
 
-Aplicación de escritorio para gestionar clientes, vehículos, alquileres y consultas de ingresos. Desarrollada en Java 26 con JavaFX y Maven.
+RentCar es una aplicación de escritorio hecha con JavaFX para registrar clientes y vehículos, crear alquileres y consultar los ingresos de un periodo.
+
+Los datos se guardan en memoria mientras la aplicación está abierta. Al cerrarla, los registros se pierden.
 
 ## Requisitos
 
 - JDK 26.
 - IntelliJ IDEA (opcional).
 
-## Ejecutar la aplicación
+El proyecto incluye Maven Wrapper, así que no necesitas instalar Maven por separado.
 
-En Windows, abre la carpeta del proyecto como proyecto Maven en IntelliJ IDEA o ejecuta desde la carpeta raíz:
+## Abrir la aplicación en Windows
+
+Abre la carpeta del proyecto en IntelliJ IDEA y carga el proyecto Maven. También puedes iniciarla desde la carpeta del proyecto con:
 
 ```powershell
 .\mvnw.cmd javafx:run
 ```
 
-## Pruebas unitarias
+## Ejecutar las pruebas
 
-Las pruebas están separadas del código de la aplicación en `src/test/java` y organizadas por área:
+Las pruebas unitarias están en `src/test/java`. Comprueban la creación de clientes, la búsqueda por teléfono, la búsqueda de vehículos, los cálculos de alquileres y descuentos, y la consulta de ingresos.
 
-- `model/ClienteBuilderTest`: construcción y validaciones del cliente.
-- `service/ClienteServiceTest`: búsqueda de clientes y números perfectos.
-- `service/AlquilerServiceTest`: búsqueda de vehículos, facturación y validación del cliente.
-- `service/LiquidadorFinancieroTest`: tarifas, días, servicios y descuentos.
-- `service/FinanzasServiceTest`: ingresos en un periodo.
-
-Para ejecutarlas en Windows desde la carpeta raíz:
+Para ejecutarlas en Windows:
 
 ```powershell
 .\mvnw.cmd test
 ```
 
-## Estructura del proyecto
+## Organización del código
 
-- `model`: entidades del negocio.
-- `repository`: acceso a los datos en memoria.
-- `service`: operaciones y reglas de negocio.
-- `Controller`: conexión de JavaFX con los servicios.
+- `model`: clases que representan clientes, vehículos, alquileres y otros datos del negocio.
+- `repository`: acceso a los datos, que por ahora se conservan en memoria.
+- `service`: operaciones y reglas del negocio.
+- `Controller`: conecta la interfaz JavaFX con los servicios.
+- `src/main/resources`: archivos de la interfaz, como la vista FXML.
 - `src/test/java`: pruebas unitarias.
