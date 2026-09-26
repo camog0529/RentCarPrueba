@@ -43,11 +43,11 @@ public class AlquilerService {
         ModalidadAlquiler modalidad;
         String tipo = dto.getTipoModalidad().toUpperCase().trim();
         if (tipo.equals("ECONOMICA")) {
-            modalidad = new ModalidadEconomica(dto.getCodigoReserva(), "Económica", "Plan base", 1, 45000.0, "Disponible");
+            modalidad = new ModalidadEconomica(dto.getCodigoReserva(), "Económica", "Plan base", 1, 45000.0, EstadoModalidad.DISPONIBLE);
         } else if (tipo.equals("EJECUTIVA")) {
-            modalidad = new ModalidadEjecutiva(dto.getCodigoReserva(), "Ejecutiva", "Plan intermedio", 1, 75000.0, "Disponible", "Sede Central");
+            modalidad = new ModalidadEjecutiva(dto.getCodigoReserva(), "Ejecutiva", "Plan intermedio", 1, 75000.0, EstadoModalidad.DISPONIBLE, "Sede Central");
         } else {
-            modalidad = new ModalidadPremium(dto.getCodigoReserva(), "Premium", "Plan alta gama", 1, 120000.0, "Disponible", "Cobertura Total", 2, "VIP");
+            modalidad = new ModalidadPremium(dto.getCodigoReserva(), "Premium", "Plan alta gama", 1, 120000.0, EstadoModalidad.DISPONIBLE, "Cobertura Total", 2, "VIP");
         }
 
         // 3. Creación limpia de la Reserva usando su Constructor tradicional (Garantizando el Slim Controller y SRP)
@@ -59,7 +59,7 @@ public class AlquilerService {
         contratoFinal.setCliente(clienteSeleccionado);
         contratoFinal.setVehiculo(vehiculoSeleccionado);
         contratoFinal.setModalidad(modalidad);
-        contratoFinal.setEstado("ACTIVA");
+        contratoFinal.setEstado(EstadoReserva.ACTIVA);
 
         // Cruzar y mapear los servicios adicionales seleccionados
         List<ServicioAdicional> catalogo = rentCarRepository.obtenerCatalogoServicios();

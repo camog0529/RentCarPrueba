@@ -5,7 +5,7 @@ public class ModalidadEjecutiva extends ModalidadAlquiler {
     private String direccionEntregaPersonalizada;
 
     // Constructor completo que inicializa los campos heredados y el atributo propio
-    public ModalidadEjecutiva(String codigo, String nombre, String description, int duracionMinimaDias, double valorDiario, String estado, String direccionEntregaPersonalizada) {
+    public ModalidadEjecutiva(String codigo, String nombre, String description, int duracionMinimaDias, double valorDiario, EstadoModalidad estado, String direccionEntregaPersonalizada) {
         super(codigo, nombre, description, duracionMinimaDias, valorDiario, estado);
         this.direccionEntregaPersonalizada = direccionEntregaPersonalizada;
     }

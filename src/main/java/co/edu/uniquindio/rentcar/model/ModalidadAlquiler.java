@@ -9,12 +9,12 @@ public abstract class ModalidadAlquiler {
     protected String description;
     protected int duracionMinimaDias;
     protected double valorDiario;
-    protected String estado; // Puede controlarse comercialmente como "Disponible", "Suspendida" o "Finalizada"
+    protected EstadoModalidad estado; // Puede controlarse comercialmente como "Disponible", "Suspendida" o "Finalizada"
 
     //Constructores de la clase
     // Constructor completo de la clase abstracta permite inicializar todos los estados de la modalidad de renta al momento de si creacion las hijas invocaran este constructor
     //utilizando la palabra clave super(....)en sus primeras lineas de codigo para garantizar que el molde base se ensamble bien
-    public ModalidadAlquiler(String codigo, String nombre, String description, int duracionMinimaDias, double valorDiario, String estado) {
+    public ModalidadAlquiler(String codigo, String nombre, String description, int duracionMinimaDias, double valorDiario, EstadoModalidad estado) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.description = description;
@@ -77,11 +77,9 @@ public abstract class ModalidadAlquiler {
         this.valorDiario = valorDiario;
     }
 
-    public String getEstado() {
-        return estado;
+    public EstadoModalidad getEstado() {return estado;
     }
+    public void setEstado(EstadoModalidad estado) {this.estado = estado;}
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
+
 }
