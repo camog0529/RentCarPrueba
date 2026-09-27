@@ -54,9 +54,7 @@ public class ServicioAdicional {
         this.precio = precio;
     }
 
-    public boolean isDisponibilidad() {
-        return disponibilidad;
-    }
+    public boolean isDisponibilidad() { return disponibilidad;}
 
     public void setDisponibilidad(boolean disponibilidad) {
         this.disponibilidad = disponibilidad;
