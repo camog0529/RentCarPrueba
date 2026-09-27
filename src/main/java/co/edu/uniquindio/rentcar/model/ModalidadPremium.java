@@ -7,7 +7,7 @@ public class ModalidadPremium extends ModalidadAlquiler {
     private String caracteristicasEspecialesServicio;
 
     // Constructor completo para inicializar la base heredada y los tres campos específicos
-    public ModalidadPremium(String codigo, String nombre, String description, int duracionMinimaDias, double valorDiario, String estado, String tipoCobertura, int cantidadConductoresAdicionalesPermitidos, String caracteristicasEspecialesServicio) {
+    public ModalidadPremium(String codigo, String nombre, String description, int duracionMinimaDias, double valorDiario, EstadoModalidad estado, String tipoCobertura, int cantidadConductoresAdicionalesPermitidos, String caracteristicasEspecialesServicio) {
         super(codigo, nombre, description, duracionMinimaDias, valorDiario, estado);
         this.tipoCobertura = tipoCobertura;
         this.cantidadConductoresAdicionalesPermitidos = cantidadConductoresAdicionalesPermitidos;

@@ -9,7 +9,7 @@ public class Reserva {
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     private double descuento;
-    private String estado;
+    private EstadoReserva estado;
 
     private Cliente cliente;
     private Vehiculo vehiculo;
@@ -52,11 +52,11 @@ public class Reserva {
         this.descuento = descuento;
     }
 
-    public String getEstado() {
+    public EstadoReserva getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(EstadoReserva estado) {
         this.estado = estado;
     }
 

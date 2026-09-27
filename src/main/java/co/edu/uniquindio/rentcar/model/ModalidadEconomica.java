@@ -3,7 +3,7 @@ package co.edu.uniquindio.rentcar.model;
 public class ModalidadEconomica extends ModalidadAlquiler {
 
     // Constructor completo que invoca al constructor de la clase padre abstracta mediante 'super'
-    public ModalidadEconomica(String codigo, String nombre, String description, int duracionMinimaDias, double valorDiario, String estado) {
+    public ModalidadEconomica(String codigo, String nombre, String description, int duracionMinimaDias, double valorDiario, EstadoModalidad estado) {
         super(codigo, nombre, description, duracionMinimaDias, valorDiario, estado);
     }
 

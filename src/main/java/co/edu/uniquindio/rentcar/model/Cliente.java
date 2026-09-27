@@ -3,7 +3,6 @@ package co.edu.uniquindio.rentcar.model;
 
 import java.time.LocalDate;
 //importa la clase estandar de java para manejo de fechas se usara para el registro de usuario
-
 public class Cliente {
     //declara la clase Cliente que representa el molde de instanciacion del cliente en el modelo negocio
     private String nombreCompleto;
